@@ -23,6 +23,10 @@
     </div>
 
     <div class="choice">
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/save_csv'">csvをデータベースに保存</button>
+    </div>
+
+    <div class="choice">
         <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/encryption'">暗号化</button>
     </div>
 
