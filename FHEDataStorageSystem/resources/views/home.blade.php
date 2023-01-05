@@ -18,20 +18,40 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="choice">
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/keygenerator'">鍵の発行</button>
+    <div class="container mt-5">
+        @if(session('status'))
+          <div class="alert alert-success">
+              {{ session('status') }}
+          </div>
+        @endif
+       
+        <div class="card">
+          <div class="card-header font-weight-bold">
+            <h2 class="float-left"> Select operation </h2>
+          </div>
+          <div class="card-body">
+            <div class="choice">
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/keygenerator'">鍵の発行</button>
+            </div>
+        
+            <div class="choice">
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/save_csv'">csvをデータベースに保存</button>
+            </div>
+        
+            <div class="choice">
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/encryption'">暗号化</button>
+            </div>
+        
+            <div class="choice">
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">復号</button>
+            </div>
+        </div>
     </div>
+    <div class="back-btn">
+        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+    </div>
+</div>
 
-    <div class="choice">
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/save_csv'">csvをデータベースに保存</button>
-    </div>
-
-    <div class="choice">
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/encryption'">暗号化</button>
-    </div>
-
-    <div class="choice">
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">復号</button>
-    </div>
+    
 </body>
 </html>

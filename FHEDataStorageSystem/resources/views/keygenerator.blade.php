@@ -19,19 +19,38 @@
 </head>
 
 <body>
-    <div class="KeyGenerater">
-       <button type="button" class="btn btn-primary btn-lg" onclick="KeyGenerate()">鍵の発行</button></a>
-    </div>
-    <div class="SecretKey">
-        <h1>SecretKey</h1>
-        <textarea id="secretkey"  disabled readonly></textarea>
-    </div>
-    <div class="PublicKey">
-        <h1>PublicKey</h1>
-        <textarea id="publickey"  disabled readonly></textarea>
-    </div>
-    <div class="Back_button">
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
-    </div>
+    <div class="container mt-5">
+ 
+   
+        @if(session('status'))
+          <div class="alert alert-success">
+              {{ session('status') }}
+          </div>
+        @endif
+       
+        <div class="card">
+          <div class="card-header font-weight-bold">
+            <h2 class="float-left">KeyGenerator</h2>
+            <h2 class="float-right">
+                <div class="KeyGenerator">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="KeyGenerate()">鍵の発行</button></a>
+                </div>
+            </h2>
+            
+          </div>
+          <div class="card-body">
+            <div class="SecretKey">
+                <h1>SecretKey</h1>
+                <textarea id="secretkey"  disabled readonly></textarea>
+            </div>
+            <div class="PublicKey">
+                <h1>PublicKey</h1>
+                <textarea id="publickey"  disabled readonly></textarea>
+            </div>
+            <div class="back_btn">
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+            </div>
+          </div>
+        </div>
 </body>
 </html>

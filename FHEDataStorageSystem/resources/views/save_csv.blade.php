@@ -40,7 +40,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <div class="form-group">
-                              <input type="file" name="file" placeholder="Choose file">
+                              <input type="file" name="file" accept=".csv" placeholder="Choose file">
                           </div>
                           @error('file')
                               <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -54,10 +54,11 @@
               </form>
             </div>
         </div>
-      </div>  
-      
-    <div class="choice">
-        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+        <div class="back-btn">
+            <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+        </div>
     </div>
+      
+    
 </body>
 </html>
