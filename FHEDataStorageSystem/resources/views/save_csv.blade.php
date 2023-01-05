@@ -31,7 +31,7 @@
           <div class="card-header font-weight-bold">
             <h2 class="float-left">Import and Export CSV File</h2>
             <h2 class="float-right">
-                <a href="{{url('export-save_csv/csv')}}" class="btn btn-success">Export CSV</a>
+                <a href="{{url('export-save_csv/csv')}}" class="btn btn-success">CSVで出力する</a>
             </h2>
           </div>
           <div class="card-body">
