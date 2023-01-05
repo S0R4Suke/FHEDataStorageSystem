@@ -77,4 +77,14 @@ window.KeyGenerate = async function(){
     
     document.getElementById("secretkey").value = Secret_key
     document.getElementById("publickey").value = Public_key
+    
+    
+    // Download section
+    const element = document.createElement('a')
+    document.body.appendChild(element)
+    const blobPub = new Blob([Public_key],{type:"text/plain"})
+    element.href = window.URL.createObjectURL(blobPub);
+    element.download = "pubKey.text"
+    element.click()
+    document.body.removeChild(element)
 }

@@ -20,7 +20,7 @@
 
 <body>
     <div class="KeyGenerater">
-        <button type="button" class="btn btn-primary btn-lg" onclick="KeyGenerate()">鍵の発行</button>
+       <button type="button" class="btn btn-primary btn-lg" onclick="KeyGenerate()">鍵の発行</button></a>
     </div>
     <div class="SecretKey">
         <h1>SecretKey</h1>
@@ -30,7 +30,6 @@
         <h1>PublicKey</h1>
         <textarea id="publickey"  disabled readonly></textarea>
     </div>
-
     <div class="Back_button">
         <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
     </div>

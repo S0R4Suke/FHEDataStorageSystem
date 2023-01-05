@@ -98,7 +98,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // export async function KeyGenerate() {
 window.KeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, keyGenerator, Secret_key_Keypair_A_, Public_key_Keypair_A_, Secret_key, Public_key;
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, keyGenerator, Secret_key_Keypair_A_, Public_key_Keypair_A_, Secret_key, Public_key, element, blobPub;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -147,7 +147,18 @@ window.KeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRu
         Public_key = Public_key_Keypair_A_.save();
         document.getElementById("secretkey").value = Secret_key;
         document.getElementById("publickey").value = Public_key;
-      case 22:
+
+        // Download section
+        element = document.createElement('a');
+        document.body.appendChild(element);
+        blobPub = new Blob([Public_key], {
+          type: "text/plain"
+        });
+        element.href = window.URL.createObjectURL(blobPub);
+        element.download = "pubKey.text";
+        element.click();
+        document.body.removeChild(element);
+      case 29:
       case "end":
         return _context.stop();
     }
