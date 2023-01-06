@@ -18,7 +18,7 @@ class Import implements ToModel, WithHeadingRow
         return new Customer([
             'name'     => $row['name'],
             'address'  => $row['address'], 
-            'Revenues' => $row['revenues'],
+            'revenues' => $row['revenues'],
         ]);
     }
 }
