@@ -11,8 +11,8 @@ window.KeyGenerate = async function(){
     const schemeType = seal.SchemeType.bfv
 
     const securityLevel = seal.SecurityLevel.tc128
-    const polyModulusDegree = 4096
-    const bitSizes = [36,36,37]
+    const polyModulusDegree = 2048
+    const bitSizes = [32]
     const bitSize = 20
     
     // sealに値渡し
