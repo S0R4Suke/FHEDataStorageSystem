@@ -20,8 +20,6 @@
 
 <body>
     <div class="container mt-5">
- 
-   
         @if(session('status'))
           <div class="alert alert-success">
               {{ session('status') }}
@@ -36,7 +34,7 @@
                     <button type="button" class="btn btn-primary btn-lg" onclick="KeyGenerate()">鍵の発行</button></a>
                 </div>
             </h2>
-            
+
           </div>
           <div class="card-body">
             <div class="SecretKey">
