@@ -6315,7 +6315,7 @@ window.addEventListener('load', function () {
   });
 });
 window.Encryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, evaluator, batchEncoder, encryptor, i, j, _PlainText, cipherText, Cipher;
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, evaluator, batchEncoder, encryptor, C, i, j, _PlainText, cipherText, Cipher, blob, link;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6375,29 +6375,60 @@ window.Encryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
         encryptor = seal.Encryptor(context, UploadedPublicKey); ////////////////////////
         // Homomorphic Functions
         ////////////////////////
-        // CSVを数列に変換(UTF-8)
-        for (i = 1; i <= 1; i++) {
-          for (j = 1; j <= B.length; j++) {
-            _PlainText = batchEncoder.encode(Int32Array.from(encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().stringToCode(B[i][j]))); // 定義
-            encryptor.encrypt(_PlainText, CipherText);
-            // 暗号化する
-            cipherText = encryptor.encrypt(_PlainText);
-            Cipher = cipherText.save();
-            console.log(Cipher);
+        // // CSVを数列に変換(UTF-8)
+        // for(var i=1;i<B.length;i++){
+        //   for(var j=1;j<B[i].length-2;j++){
+        //     const PlainText = batchEncoder.encode(
+        //       Int32Array.from(Encoding.stringToCode(B[i][j]))
+        //     )
+        //     // 定義
+        //     encryptor.encrypt(
+        //       PlainText,
+        //       CipherText
+        //     )
+        //   // 暗号化する
+        //     const cipherText = encryptor.encrypt(PlainText)
+        //     const Cipher = cipherText.save()
+        //   }
+        // }
+        // 暗号化したデータを使って配列を編集
+        C = "";
+        for (i = 0; i < B.length; i++) {
+          if (i == 0) {
+            for (j = 0; j < B[i].length; j++) {
+              if (j == B[i].length - 1) {
+                C += B[i][j] + "\n";
+              } else {
+                C += B[i][j] + ",";
+              }
+            }
+          } else {
+            for (j = 0; j < B[i].length; j++) {
+              if (j == 1 || j == 2) {
+                _PlainText = batchEncoder.encode(Int32Array.from(encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().stringToCode(B[i][j]))); // 定義
+                encryptor.encrypt(_PlainText, CipherText);
+                // 暗号化する
+                cipherText = encryptor.encrypt(_PlainText);
+                Cipher = cipherText.save();
+                C += Cipher + ",";
+              } else if (j == B[i].length - 1) {
+                C += B[i][j] + "\n";
+              } else {
+                C += B[i][j] + ",";
+              }
+            }
           }
         }
-
-        // Encrypt a PlainText
-        // encryptor.encrypt(
-        //     PlainText,
-        //     CipherText
-        // )
-
-        // 暗号化する
-        // const cipherText = encryptor.encrypt(PlainText)
-
-        // CSVに直す
-      case 24:
+        blob = new Blob([C], {
+          type: "text/csv"
+        }); //配列に上記の文字列(str)を設定
+        link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "tempdate.csv";
+        //作ったリンクタグをクリックさせる
+        document.body.appendChild(link);
+        link.click();
+      case 31:
       case "end":
         return _context.stop();
     }

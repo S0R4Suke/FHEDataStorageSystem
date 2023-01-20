@@ -34,6 +34,7 @@ Route::get('/save_csv',function (){
     return view('save_csv');
 });
 
+
 Route::get('save_csv', [CSVController::class, 'index']);
 Route::post('import-save_csv', [CSVController::class, 'importCSV']);
 Route::get('export-save_csv/{slug}', [CSVController::class, 'exportCSV']);

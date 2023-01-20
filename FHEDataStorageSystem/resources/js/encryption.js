@@ -1,12 +1,3 @@
-// ボタンが押された時、関数を実行する
-// getElementbyIdでファイルを取得し、CSVは列ごとの配列に格納する
-// 公開鍵は何かしらの変数に格納する
-// その二つのデータを使ってCSVを編集し、またCSVに直して、出力する
-
-// 第2手順
-// CSVを入力させて、CSVであることが確認できたら配列に格納する
-// pubkeyを入力させる
-
 import Encoding from 'encoding-japanese';
 import SEAL from 'node-seal'
 
@@ -141,34 +132,64 @@ window.Encryption = async function(){
     // Homomorphic Functions
     ////////////////////////
 
-    // CSVを数列に変換(UTF-8)
-    for(var i=1;i<=1;i++){
-      for(var j=1;j<=B.length;j++){
-        const PlainText = batchEncoder.encode(
-          Int32Array.from(Encoding.stringToCode(B[i][j]))
-        )
+    // // CSVを数列に変換(UTF-8)
+    // for(var i=1;i<B.length;i++){
+    //   for(var j=1;j<B[i].length-2;j++){
+    //     const PlainText = batchEncoder.encode(
+    //       Int32Array.from(Encoding.stringToCode(B[i][j]))
+    //     )
 
-        // 定義
-        encryptor.encrypt(
-          PlainText,
-          CipherText
-        )
-      // 暗号化する
-        const cipherText = encryptor.encrypt(PlainText)
-        const Cipher = cipherText.save()
-        console.log(Cipher)
+    //     // 定義
+    //     encryptor.encrypt(
+    //       PlainText,
+    //       CipherText
+    //     )
+    //   // 暗号化する
+    //     const cipherText = encryptor.encrypt(PlainText)
+    //     const Cipher = cipherText.save()
+    //   }
+    // }
+
+    // 暗号化したデータを使って配列を編集
+    var C = ""
+    for(var i=0;i<B.length;i++){
+      if(i == 0){
+        for(var j=0;j<B[i].length;j++){
+          if(j == B[i].length-1){
+            C += B[i][j]+"\n"
+          }else{
+            C += B[i][j]+","
+          }
+        }
+      }else{
+        for(var j=0;j<B[i].length;j++){
+          if(j==1 || j==2 ){
+            const PlainText = batchEncoder.encode(
+              Int32Array.from(Encoding.stringToCode(B[i][j]))
+            )
+            // 定義
+            encryptor.encrypt(
+              PlainText,
+              CipherText
+            )
+            // 暗号化する
+            const cipherText = encryptor.encrypt(PlainText)
+            const Cipher = cipherText.save()
+            C += Cipher+","
+          }else if(j == B[i].length-1){
+            C += B[i][j]+"\n"
+          }else{
+            C += B[i][j]+","
+          }
+        }
       }
     }
 
-    // Encrypt a PlainText
-    // encryptor.encrypt(
-    //     PlainText,
-    //     CipherText
-    // )
-
-    // 暗号化する
-    // const cipherText = encryptor.encrypt(PlainText)
-
-    // CSVに直す
-
+    const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
+    const link =document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download ="tempdate.csv";
+    //作ったリンクタグをクリックさせる
+    document.body.appendChild(link);
+    link.click();
 }
