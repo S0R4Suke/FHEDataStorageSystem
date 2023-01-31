@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/js/bfv.js": "/js/bfv.js",
     "/js/encryption.js": "/js/encryption.js",
+    "/js/decryption.js": "/js/decryption.js",
     "/css/app.css": "/css/app.css"
 }

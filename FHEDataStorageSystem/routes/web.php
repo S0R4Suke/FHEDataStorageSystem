@@ -34,6 +34,10 @@ Route::get('/save_csv',function (){
     return view('save_csv');
 });
 
+Route::get('/decryption',function (){
+    return view('decryption');
+});
+
 
 Route::get('save_csv', [CSVController::class, 'index']);
 Route::post('import-save_csv', [CSVController::class, 'importCSV']);

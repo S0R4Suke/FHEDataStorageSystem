@@ -43,8 +43,9 @@
             </div>
                     
             <div class="choice">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">復号</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/decryption'">復号</button>
             </div>
+            
         </div>
     </div>
 </div>
