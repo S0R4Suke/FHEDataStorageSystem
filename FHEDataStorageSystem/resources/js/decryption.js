@@ -142,7 +142,7 @@ window.Decryption = async function(){
         }
       }else{
         for(var j=0;j<B[i].length;j++){
-          if(j==1 || j==2 ){
+          if(j==2){
             // 暗号文を格納する変数を定義
             const CipherText = seal.CipherText()
             // 暗号文を格納
@@ -153,11 +153,7 @@ window.Decryption = async function(){
             const decoded = batchEncoder.decode(plainText)
             // 配列を日本語に変換
             const decodedTEXT = Encoding.codeToString(decoded)
-            console.log('PLAINTEXT:\n',decodedTEXT);
-            C += decodedTEXT+","
-
-          }else if(j == B[i].length-1){
-            C += B[i][j]+"\n"
+            C += decodedTEXT+"\n"
           }else{
             C += B[i][j]+","
           }
@@ -165,6 +161,7 @@ window.Decryption = async function(){
       }
     }
 
+    // csvのダウンロード
     const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
     const link =document.createElement('a');
     link.href = URL.createObjectURL(blob);

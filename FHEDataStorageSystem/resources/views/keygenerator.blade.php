@@ -39,11 +39,11 @@
           <div class="card-body">
             <div class="SecretKey">
                 <h1>SecretKey</h1>
-                <textarea id="secretkey"  disabled readonly></textarea>
+                <textarea id="secretkey"  onfocus="this.select()" readonly></textarea>
             </div>
             <div class="PublicKey">
                 <h1>PublicKey</h1>
-                <textarea id="publickey"  disabled readonly></textarea>
+                <textarea id="publickey"  readonly></textarea>
             </div>
             <div class="back_btn">
                 <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>

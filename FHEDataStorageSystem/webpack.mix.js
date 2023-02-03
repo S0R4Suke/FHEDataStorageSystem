@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/bfv.js', 'public/js')
     .js('resources/js/encryption.js', 'public/js')
     .js('resources/js/decryption.js', 'public/js')
+    .js('resources/js/calculation.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

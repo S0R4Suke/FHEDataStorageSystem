@@ -38,6 +38,11 @@ Route::get('/decryption',function (){
     return view('decryption');
 });
 
+Route::get('/calculation',function (){
+    return view('calculation');
+});
+
+
 
 Route::get('save_csv', [CSVController::class, 'index']);
 Route::post('import-save_csv', [CSVController::class, 'importCSV']);

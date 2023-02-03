@@ -6366,22 +6366,6 @@ window.Encryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
         encryptor = seal.Encryptor(context, UploadedPublicKey); ////////////////////////
         // Homomorphic Functions
         ////////////////////////
-        // // CSVを数列に変換(UTF-8)
-        // for(var i=1;i<B.length;i++){
-        //   for(var j=1;j<B[i].length-2;j++){
-        //     const PlainText = batchEncoder.encode(
-        //       Int32Array.from(Encoding.stringToCode(B[i][j]))
-        //     )
-        //     // 定義
-        //     encryptor.encrypt(
-        //       PlainText,
-        //       CipherText
-        //     )
-        //   // 暗号化する
-        //     const cipherText = encryptor.encrypt(PlainText)
-        //     const Cipher = cipherText.save()
-        //   }
-        // }
         // 暗号化したデータを使って配列を編集
         C = "";
         for (i = 0; i < B.length; i++) {
@@ -6395,15 +6379,13 @@ window.Encryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
             }
           } else {
             for (j = 0; j < B[i].length; j++) {
-              if (j == 1 || j == 2) {
+              if (j == 2) {
                 _PlainText = batchEncoder.encode(Int32Array.from(encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().stringToCode(B[i][j]))); // 定義
                 encryptor.encrypt(_PlainText, CipherText);
                 // 暗号化する
                 cipherText = encryptor.encrypt(_PlainText);
                 Cipher = cipherText.save();
-                C += Cipher + ",";
-              } else if (j == B[i].length - 1) {
-                C += B[i][j] + "\n";
+                C += Cipher + "\n";
               } else {
                 C += B[i][j] + ",";
               }

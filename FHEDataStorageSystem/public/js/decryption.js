@@ -6383,7 +6383,7 @@ window.Decryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
             }
           } else {
             for (j = 0; j < B[i].length; j++) {
-              if (j == 1 || j == 2) {
+              if (j == 2) {
                 // 暗号文を格納する変数を定義
                 CipherText = seal.CipherText(); // 暗号文を格納
                 CipherText.load(context, B[i][j]);
@@ -6391,10 +6391,7 @@ window.Decryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
                 plainText = decryptor.decrypt(CipherText); // Decode
                 decoded = batchEncoder.decode(plainText); // 配列を日本語に変換
                 decodedTEXT = encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().codeToString(decoded);
-                console.log('PLAINTEXT:\n', decodedTEXT);
-                C += decodedTEXT + ",";
-              } else if (j == B[i].length - 1) {
-                C += B[i][j] + "\n";
+                C += decodedTEXT + "\n";
               } else {
                 C += B[i][j] + ",";
               }

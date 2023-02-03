@@ -46,6 +46,9 @@
                 <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/decryption'">復号</button>
             </div>
             
+            <div class="choice">
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/calculation'">演算</button>
+            </div>
         </div>
     </div>
 </div>

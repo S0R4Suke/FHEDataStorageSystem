@@ -132,24 +132,6 @@ window.Encryption = async function(){
     // Homomorphic Functions
     ////////////////////////
 
-    // // CSVを数列に変換(UTF-8)
-    // for(var i=1;i<B.length;i++){
-    //   for(var j=1;j<B[i].length-2;j++){
-    //     const PlainText = batchEncoder.encode(
-    //       Int32Array.from(Encoding.stringToCode(B[i][j]))
-    //     )
-
-    //     // 定義
-    //     encryptor.encrypt(
-    //       PlainText,
-    //       CipherText
-    //     )
-    //   // 暗号化する
-    //     const cipherText = encryptor.encrypt(PlainText)
-    //     const Cipher = cipherText.save()
-    //   }
-    // }
-
     // 暗号化したデータを使って配列を編集
     var C = ""
     for(var i=0;i<B.length;i++){
@@ -163,7 +145,7 @@ window.Encryption = async function(){
         }
       }else{
         for(var j=0;j<B[i].length;j++){
-          if(j==1 || j==2 ){
+          if(j==2){
             const PlainText = batchEncoder.encode(
               Int32Array.from(Encoding.stringToCode(B[i][j]))
             )
@@ -175,16 +157,15 @@ window.Encryption = async function(){
             // 暗号化する
             const cipherText = encryptor.encrypt(PlainText)
             const Cipher = cipherText.save()
-            C += Cipher+","
-          }else if(j == B[i].length-1){
-            C += B[i][j]+"\n"
+            C += Cipher+"\n"
           }else{
             C += B[i][j]+","
           }
         }
       }
     }
-
+    
+    // csvのダウンロード
     const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
     const link =document.createElement('a');
     link.href = URL.createObjectURL(blob);
