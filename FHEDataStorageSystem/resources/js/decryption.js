@@ -123,7 +123,6 @@ window.Decryption = async function(){
         context,
         UploadedSecretKey
     )
-    console.log('DEBUG')
 
     ////////////////////////
     // Homomorphic Functions
@@ -152,8 +151,8 @@ window.Decryption = async function(){
             // Decode
             const decoded = batchEncoder.decode(plainText)
             // 配列を日本語に変換
-            const decodedTEXT = Encoding.codeToString(decoded)
-            C += decodedTEXT+"\n"
+            // const decodedTEXT = Encoding.codeToString(decoded)
+            C += decoded[0]+"\n"
           }else{
             C += B[i][j]+","
           }
@@ -166,6 +165,7 @@ window.Decryption = async function(){
     const link =document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download ="decrypted.csv";
+
     //作ったリンクタグをクリックさせる
     document.body.appendChild(link);
     link.click();

@@ -6380,7 +6380,10 @@ window.Encryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
           } else {
             for (j = 0; j < B[i].length; j++) {
               if (j == 2) {
-                _PlainText = batchEncoder.encode(Int32Array.from(encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().stringToCode(B[i][j]))); // 定義
+                _PlainText = batchEncoder.encode(Int32Array.from([B[i][j]])
+                // Int32Array.from(Encoding.stringToCode(B[i][j]))
+                ); // 定義
+
                 encryptor.encrypt(_PlainText, CipherText);
                 // 暗号化する
                 cipherText = encryptor.encrypt(_PlainText);
@@ -6392,6 +6395,8 @@ window.Encryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
             }
           }
         }
+
+        // csvのダウンロード
         blob = new Blob([C], {
           type: "text/csv"
         }); //配列に上記の文字列(str)を設定

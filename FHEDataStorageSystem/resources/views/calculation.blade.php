@@ -7,6 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Script -->
+    <script>
+        const data = @json($data);
+    </script>
     <script src="{{ mix('js/calculation.js') }}"></script>
 
     <!-- Meta Data -->
@@ -34,12 +37,36 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">加算</h5>
-                            <input id="pubkey" type="file" name="file">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="Calculation()">演算を行う</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="Encryption text-center">
-                <button type="button" class="btn btn-primary btn-lg" onclick="Encryption()">暗号化する</button>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">秘密鍵を選択してください</h5>
+                            <input id="seckey" type="file" name="file">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">復号する計算結果を選択してください</h5>
+                            <input id="result" type="file" name="file">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="Calc_Dec()">計算結果を復号する</button>
+                </div>
             </div>
         </div>
 

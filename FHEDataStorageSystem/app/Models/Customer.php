@@ -20,6 +20,5 @@ class Customer extends Model
         'address',
         'revenues',
     ];
-
 }
 

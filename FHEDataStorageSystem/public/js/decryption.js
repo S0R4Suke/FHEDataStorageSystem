@@ -6306,7 +6306,7 @@ window.addEventListener('load', function () {
   });
 });
 window.Decryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, secretBase64Key, UploadedSecretKey, batchEncoder, decryptor, C, i, j, CipherText, plainText, decoded, decodedTEXT, blob, link;
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, secretBase64Key, UploadedSecretKey, batchEncoder, decryptor, C, i, j, CipherText, plainText, decoded, blob, link;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6363,13 +6363,9 @@ window.Decryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
 
         // Create a BatchEncoder
         batchEncoder = seal.BatchEncoder(context); // Create an Decryptor
-        decryptor = seal.Decryptor(context, UploadedSecretKey);
-        console.log('DEBUG');
-
-        ////////////////////////
+        decryptor = seal.Decryptor(context, UploadedSecretKey); ////////////////////////
         // Homomorphic Functions
         ////////////////////////
-
         // 暗号化したデータを使って配列を編集
         C = "";
         for (i = 0; i < B.length; i++) {
@@ -6390,24 +6386,27 @@ window.Decryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRun
                 // 復号
                 plainText = decryptor.decrypt(CipherText); // Decode
                 decoded = batchEncoder.decode(plainText); // 配列を日本語に変換
-                decodedTEXT = encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().codeToString(decoded);
-                C += decodedTEXT + "\n";
+                // const decodedTEXT = Encoding.codeToString(decoded)
+                C += decoded[0] + "\n";
               } else {
                 C += B[i][j] + ",";
               }
             }
           }
         }
+
+        // csvのダウンロード
         blob = new Blob([C], {
           type: "text/csv"
         }); //配列に上記の文字列(str)を設定
         link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = "decrypted.csv";
+
         //作ったリンクタグをクリックさせる
         document.body.appendChild(link);
         link.click();
-      case 29:
+      case 28:
       case "end":
         return _context.stop();
     }

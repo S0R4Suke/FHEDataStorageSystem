@@ -147,7 +147,8 @@ window.Encryption = async function(){
         for(var j=0;j<B[i].length;j++){
           if(j==2){
             const PlainText = batchEncoder.encode(
-              Int32Array.from(Encoding.stringToCode(B[i][j]))
+              Int32Array.from([B[i][j]])
+              // Int32Array.from(Encoding.stringToCode(B[i][j]))
             )
             // 定義
             encryptor.encrypt(

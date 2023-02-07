@@ -13,10 +13,10 @@ class Export implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        return Customer::all();
+        return Customer::select('name','address','revenues')->get();
     }
     public function headings():array
     {
-        return ['id','name','address','revenues','created_at','updated_at'];
+        return ['name','address','revenues'];
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CSVController;
-
+use App\Http\Controllers\DataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,3 +47,4 @@ Route::get('/calculation',function (){
 Route::get('save_csv', [CSVController::class, 'index']);
 Route::post('import-save_csv', [CSVController::class, 'importCSV']);
 Route::get('export-save_csv/{slug}', [CSVController::class, 'exportCSV']);
+Route::get('calculation',[DataController::class,'GetData']);
