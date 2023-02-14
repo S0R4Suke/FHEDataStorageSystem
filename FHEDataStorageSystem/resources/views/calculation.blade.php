@@ -10,7 +10,8 @@
     <script>
         const data = @json($data);
     </script>
-    <script src="{{ mix('js/calculation.js') }}"></script>
+    <script src="{{ mix('js/bfv_calculation.js') }}"></script>
+    <script src="{{ mix('js/ckks_calculation.js') }}"></script>
 
     <!-- Meta Data -->
     <meta charset="UTF-8">
@@ -27,46 +28,42 @@
                 {{ session('status') }}
             </div>
         @endif
-        
-        <div class="card">
-            <div class="card-header font-weight-bold">
-            <h2 class="float-left"> Calculation </h2>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">加算</h5>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="Calculation()">演算を行う</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">秘密鍵を選択してください</h5>
-                            <input id="seckey" type="file" name="file">
-                        </div>
-                    </div>
-                </div>
     
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">復号する計算結果を選択してください</h5>
-                            <input id="result" type="file" name="file">
-                        </div>
-                    </div>
+        <div class="card mb-3">
+            <h5 class="card-header">Calculation</h5>
+            <div class="card-body">
+                <h5 class="card-title">BFV</h5>
+                <p class="card-text">BFV暗号化方式でDBに入っているデータを値の合計を出力します</p>
+                <a href="#" class="btn btn-primary" onclick="BFVCalculation()">演算結果を出力する</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">CKKS</h5>
+                <p class="card-text">CKKS暗号化方式でDBに入っているデータを値の合計を出力します</p>
+                <a href="#" class="btn btn-primary" onclick="CKKSCalculation()">演算結果を出力する</a>
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-header">Decrypt Result</h5>
+            <div class="card-body">
+                <h5 class="card-title">ファイルの選択</h5>
+                <p class="card-text">秘密鍵を選択してください</p>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="seckey">
+                  </div>
+                <p class="card-text">復号するCSVファイルを選択してください</p>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="result">
                 </div>
-
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="Calc_Dec()">計算結果を復号する</button>
-                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">BFV</h5>
+                <p class="card-text">BFV暗号化方式で演算結果を復号します</p>
+                <a href="#" class="btn btn-primary" onclick="BFVCalc_Dec()">演算結果を出力する</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">CKKS</h5>
+                <p class="card-text">CKKS暗号化方式で演算結果を復号します</p>
+                <a href="#" class="btn btn-primary" onclick="CKKSCalc_Dec()">演算結果を出力する</a>
             </div>
         </div>
 

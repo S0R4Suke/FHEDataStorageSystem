@@ -1,16 +1,3 @@
-/* 必要な操作
-加算・乗算を決定づける
-どの列、行、カラムに変更を加えるかを決定づける
-値を決定づける
-処理
-
-・計算結果の表示方法
-DBからデータを配列Aに格納
-jsから受け取った値を配列Bに格納
-jsから受け取った演算方法を変数に格納
-演算
-出力
-*/
 
 import Encoding from 'encoding-japanese';
 import SEAL from 'node-seal'
@@ -48,7 +35,7 @@ window.addEventListener('load', function() {
 
 
 // 計算結果
-window.Calculation = async function(){
+window.BFVCalculation = async function(){
     const seal = await SEAL()
 
     ////////////////////////
@@ -143,12 +130,12 @@ window.Calculation = async function(){
     const blob = new Blob([Result],{type:"text/plain"});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'Result.txt';
+    link.download = 'BFV_Result_Enc.txt';
     link.click();
 }
 
 // 計算結果の復号
-window.Calc_Dec = async function(){
+window.BFVCalc_Dec = async function(){
     const seal = await SEAL()
 
     ////////////////////////
@@ -247,6 +234,6 @@ window.Calc_Dec = async function(){
     const blob = new Blob([Result],{type:"text/plain"});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'Result.txt';
+    link.download = 'BFV_Result_Dec.txt';
     link.click();
 }

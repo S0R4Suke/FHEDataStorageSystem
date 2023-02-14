@@ -43,7 +43,7 @@ window.addEventListener('load',function(){
   })
 })
 
-window.Encryption = async function(){
+window.BFVEncryption = async function(){
     const seal = await SEAL()
 
     ////////////////////////
@@ -170,7 +170,7 @@ window.Encryption = async function(){
     const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
     const link =document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download ="tempdate.csv";
+    link.download ="BFV_Encrypted.csv";
     //作ったリンクタグをクリックさせる
     document.body.appendChild(link);
     link.click();

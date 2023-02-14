@@ -1,6 +1,6 @@
 import SEAL from 'node-seal'
 // export async function KeyGenerate() {
-window.KeyGenerate = async function(){
+window.CKKSKeyGenerate = async function(){
     const seal = await SEAL()
     
     ////////////////////////
@@ -8,12 +8,11 @@ window.KeyGenerate = async function(){
     ////////////////////////
     
     // Create a new EncryptionParameters
-    const schemeType = seal.SchemeType.bfv
+    const schemeType = seal.SchemeType.ckks
 
     const securityLevel = seal.SecurityLevel.tc128
     const polyModulusDegree = 2048
     const bitSizes = [32]
-    const bitSize = 20
     
     // sealに値渡し
     const encParms = seal.EncryptionParameters(schemeType)
@@ -26,14 +25,6 @@ window.KeyGenerate = async function(){
       seal.CoeffModulus.Create(
         polyModulusDegree,
         Int32Array.from(bitSizes)
-      )
-    )
-
-    // Assign a PlainModulus (only for bfv scheme type)
-    encParms.setPlainModulus(
-      seal.PlainModulus.Batching(
-        polyModulusDegree,
-        bitSize
       )
     )
 
@@ -84,7 +75,7 @@ window.KeyGenerate = async function(){
     document.body.appendChild(element)
     const blobPub = new Blob([Public_key],{type:"text/plain"})
     element.href = window.URL.createObjectURL(blobPub);
-    element.download = "pubKey.text"
+    element.download = "CKKS_PubKey.text"
     element.click()
     document.body.removeChild(element)
 }

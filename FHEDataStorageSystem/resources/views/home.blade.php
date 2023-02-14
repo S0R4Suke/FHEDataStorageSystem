@@ -4,10 +4,9 @@
 <head>
     <!-- BootStrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Script -->
-    {{-- <script src="main.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Meta Data -->
     <meta charset="UTF-8">
@@ -24,31 +23,27 @@
               {{ session('status') }}
           </div>
         @endif
-       
-        <div class="card">
-          <div class="card-header font-weight-bold">
-            <h2 class="float-left"> Select operation </h2>
-          </div>
-          <div class="card-body">
-            <div class="choice">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/keygenerator'">鍵の発行</button>
-            </div>
-        
-            <div class="choice">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/encryption'">暗号化</button>
-            </div>
-
-            <div class="choice">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/save_csv'">csvをデータベースに保存</button>
-            </div>
-                    
-            <div class="choice">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/decryption'">復号</button>
-            </div>
-            
-            <div class="choice">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/calculation'">演算</button>
-            </div>
+    <div class="card">
+        <h5 class="card-header">Select operation</h5>
+        <div class="card-body">
+            <h5 class="card-title" ><a href="#" onclick="location.href='/keygenerator'">鍵の発行</a></h5>
+            <p class="card-text">秘密鍵及び公開鍵を発行します</p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" ><a href="#" onclick="location.href='/encryption'">暗号化</a></h5>
+            <p class="card-text">CSVファイルの暗号化を行います</p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" ><a href="#" onclick="location.href='/save_csv'">csvをデータベースに保存</a></h5>
+            <p class="card-text">CSVをデータベースに保存します</p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" ><a href="#" onclick="location.href='/decryption'">復号</a></h5>
+            <p class="card-text">CSVファイルを復号します</p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" ><a href="#" onclick="location.href='/calculation'">演算</a></h5>
+            <p class="card-text">データベースに保存された暗号データを用いて準同型演算を行います</p>
         </div>
     </div>
 </div>

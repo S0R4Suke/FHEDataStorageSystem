@@ -7,8 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Script -->
-    <script src="{{ mix('js/encryption.js') }}"></script>
-
+    <script src="{{ mix('js/bfv_encryption.js') }}"></script>
+    <script src="{{ mix('js/ckks_encryption.js') }}"></script>
     <!-- Meta Data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,37 +24,35 @@
                 {{ session('status') }}
             </div>
         @endif
-        
+
         <div class="card">
-            <div class="card-header font-weight-bold">
-            <h2 class="float-left"> Encryption </h2>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">公開鍵を選択してください</h5>
-                            <input id="pubkey" type="file" name="file">
-                        </div>
-                    </div>
+            <h5 class="card-header">Encryption</h5>
+            <div class="card-body">
+                <h5 class="card-title">ファイルの選択</h5>
+                <p class="card-text">公開鍵を選択してください</p>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="pubkey">
+                  </div>
+                <p class="card-text">暗号化するCSVファイルを選択してください</p>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="csv_file">
                 </div>
-
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">暗号化するcsvファイルを選択して下さい</h5>
-                            <input id="csv_file" type="file" name="file">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="Encryption text-center">
-                <button type="button" class="btn btn-primary btn-lg" onclick="Encryption()">暗号化する</button>
             </div>
-        </div>
+            <div class="card-body">
+                <h5 class="card-title">BFV</h5>
+                <p class="card-text">BFV暗号方式で暗号化を行います</p>
+                <a href="#" class="btn btn-primary" onclick="BFVEncryption()">暗号化</a>
+            </div>
+              <div class="card-body">
+                <h5 class="card-title">CKKS</h5>
+                <p class="card-text">CKKS暗号方式で暗号化を行います</p>
+                <a href="#" class="btn btn-primary" onclick="CKKSEncryption()">暗号化</a>
+              </div>
+          </div>
+
 
         <div class="back-btn">
-            <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/home'">戻る</button>
         </div>
     </div>
 </body>

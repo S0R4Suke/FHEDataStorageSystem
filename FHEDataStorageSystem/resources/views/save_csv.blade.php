@@ -19,8 +19,6 @@
 </head>
 <body>
     <div class="container mt-5">
- 
-   
         @if(session('status'))
           <div class="alert alert-success">
               {{ session('status') }}
@@ -28,34 +26,35 @@
         @endif
        
         <div class="card">
-          <div class="card-header font-weight-bold">
-            <h2 class="float-left">Import and Export CSV File</h2>
+          <div class="card-header">
+            <h5 class="float-left">Import and Export CSV File</h5>
             <h2 class="float-right">
                 <a href="{{url('export-save_csv/csv')}}" class="btn btn-success">CSVで出力する</a>
             </h2>
           </div>
           <div class="card-body">
-              <form id="save_csv-form" method="POST"  action="{{ url('import-save_csv') }}" accept-charset="utf-8" enctype="multipart/form-data">
-                @csrf
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                              <input type="file" name="file" accept=".csv" placeholder="Choose file">
-                          </div>
-                          @error('file')
-                              <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                          @enderror
-                      </div>              
-        
-                      <div class="col-md-12">
-                          <button type="submit" class="btn btn-primary" id="submit">保存する</button>
+            <h5 class="card-title">ファイルの選択</h5>
+            <p class="card-text">保存するCSVファイルを選択してください</p>
+            <form id="save_csv-form" method="POST"  action="{{ url('import-save_csv') }}" accept-charset="utf-8" enctype="multipart/form-data">
+              @csrf
+                <div class="row">
+                      <div class="form-group input-group mb-3">
+                          <input type="file" name="file" class="form-control" id="csv_file" accept=".csv">
                       </div>
-                  </div>     
-              </form>
-            </div>
-        </div>
-        <div class="back-btn">
-            <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+                        @error('file')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>              
+      
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary" id="submit">保存する</button>
+                    </div>
+                </div>     
+            </form>
+          </div>
+          <div class="back-btn">
+              <button type="button" class="btn btn-primary" onclick="location.href='/home'">戻る</button>
+          </div>
         </div>
     </div>
       

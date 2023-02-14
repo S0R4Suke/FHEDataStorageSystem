@@ -7,7 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Script -->
-    <script src="{{ mix('js/bfv.js') }}"></script>
+    <script src="{{ mix('js/bfv_keygenerate.js') }}"></script>
+    <script src="{{ mix('js/ckks_keygenerate.js') }}"></script>
 
     <!-- Meta Data -->
     <meta charset="UTF-8">
@@ -25,30 +26,31 @@
               {{ session('status') }}
           </div>
         @endif
-       
-        <div class="card">
-          <div class="card-header font-weight-bold">
-            <h2 class="float-left">KeyGenerator</h2>
-            <h2 class="float-right">
-                <div class="KeyGenerator">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="KeyGenerate()">鍵の発行</button></a>
-                </div>
-            </h2>
 
+        <div class="card">
+          <h5 class="card-header">KeyGenerate</h5>
+          <div class="card-body">
+            <h5 class="card-title">BFV</h5>
+            <p class="card-text">BFV暗号方式で鍵の発行を行います</p>
+            <a href="#" class="btn btn-primary" onclick="BFVKeyGenerate()">鍵の発行</a>
           </div>
           <div class="card-body">
-            <div class="SecretKey">
-                <h1>SecretKey</h1>
-                <textarea id="secretkey"  onfocus="this.select()" readonly></textarea>
-            </div>
-            <div class="PublicKey">
-                <h1>PublicKey</h1>
-                <textarea id="publickey"  readonly></textarea>
-            </div>
-            <div class="back_btn">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
-            </div>
+            <h5 class="card-title">CKKS</h5>
+            <p class="card-text">CKKS暗号方式で鍵の発行を行います</p>
+            <a href="#" class="btn btn-primary" onclick="CKKSKeyGenerate()">鍵の発行</a>
+          </div>
+
+          <div class="card-body row">
+            <h5 class="card-title">SecretKey</h5>
+            <textarea id="secretkey"  onfocus="this.select()" readonly></textarea>
+            <h5 class="card-title">PublicKey</h5>
+            <textarea id="publickey"  onfocus="this.select()" readonly></textarea>
           </div>
         </div>
+        <div class="back_btn">
+          <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/home'">戻る</button>
+        </div>
+
+
 </body>
 </html>
