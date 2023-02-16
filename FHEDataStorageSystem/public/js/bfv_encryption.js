@@ -6292,21 +6292,19 @@ window.addEventListener('load', function () {
 
     if (csvfile_content.type === 'text/csv') {
       csvreader.onload = function () {
-        var tmp = csvreader.result.split('\n');
+        var tmp = csvreader.result.split('\r\n');
         for (var i = 0; i < tmp.length; i++) {
           // csvの１行のデータを取り出す
           var row_data = tmp[i];
           B[i] = row_data.split(',');
-          // console.log(B[i])
         }
       };
-
       csvreader.readAsText(csvfile_content);
     }
   });
 });
 window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, evaluator, batchEncoder, encryptor, C, i, j, _PlainText, cipherText, Cipher, blob, link;
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, batchEncoder, encryptor, C, i, j, PlainTextA, cipherText, Cipher, blob, link;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6360,13 +6358,13 @@ window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
         CipherText = seal.CipherText(); ////////////////////////
         // Instances
         ////////////////////////
-        // Create an Evaluator
-        evaluator = seal.Evaluator(context);
         batchEncoder = seal.BatchEncoder(context); // Create an Encryptor
-        encryptor = seal.Encryptor(context, UploadedPublicKey); ////////////////////////
+        encryptor = seal.Encryptor(context, UploadedPublicKey); // 定義
+        encryptor.encrypt(PlainText, CipherText);
+
+        ////////////////////////
         // Homomorphic Functions
         ////////////////////////
-        // 暗号化したデータを使って配列を編集
         C = "";
         for (i = 0; i < B.length; i++) {
           if (i == 0) {
@@ -6379,18 +6377,19 @@ window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
             }
           } else {
             for (j = 0; j < B[i].length; j++) {
-              if (j == 2) {
-                _PlainText = batchEncoder.encode(Int32Array.from([B[i][j]])
-                // Int32Array.from(Encoding.stringToCode(B[i][j]))
-                ); // 定義
-
-                encryptor.encrypt(_PlainText, CipherText);
-                // 暗号化する
-                cipherText = encryptor.encrypt(_PlainText);
-                Cipher = cipherText.save();
+              PlainTextA = void 0;
+              if (j == 1 || j == 2 || j == 4) {
+                PlainTextA = batchEncoder.encode(Int32Array.from(encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().stringToCode(B[i][j])));
+              } else {
+                PlainTextA = batchEncoder.encode(Int32Array.from([B[i][j]]));
+              }
+              // 暗号化する
+              cipherText = encryptor.encrypt(PlainTextA);
+              Cipher = cipherText.save();
+              if (j == B[i].length - 1) {
                 C += Cipher + "\n";
               } else {
-                C += B[i][j] + ",";
+                C += Cipher + ",";
               }
             }
           }

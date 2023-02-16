@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Customer;
+use App\Models\Test;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -13,10 +13,10 @@ class Export implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        return Customer::select('name','address','revenues')->get();
+        return Test::select('cust_age','cust_gender','cust_address','point','store_name','amount_sold','date_time')->get();
     }
     public function headings():array
     {
-        return ['name','address','revenues'];
+        return ['cust_age','cust_gender','cust_address','point','store_name','amount_sold','date_time'];
     }
 }

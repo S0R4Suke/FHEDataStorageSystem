@@ -109,7 +109,6 @@ window.BFVDecryption = async function(){
     // Variables
     ////////////////////////
 
-    // A
 
     ////////////////////////
     // Instances
@@ -130,7 +129,7 @@ window.BFVDecryption = async function(){
 
     // 暗号化したデータを使って配列を編集
     var C = ""
-    for(var i=0;i<B.length;i++){
+    for(var i=0;i<B.length-1;i++){
       if(i == 0){
         for(var j=0;j<B[i].length;j++){
           if(j == B[i].length-1){
@@ -141,25 +140,26 @@ window.BFVDecryption = async function(){
         }
       }else{
         for(var j=0;j<B[i].length;j++){
-          if(j==2){
-            // 暗号文を格納する変数を定義
-            const CipherText = seal.CipherText()
-            // 暗号文を格納
-            CipherText.load(context,B[i][j])
-            // 復号
-            const plainText = decryptor.decrypt(CipherText)
-            // Decode
-            const decoded = batchEncoder.decode(plainText)
+          // 暗号文を格納する変数を定義
+          const CipherText = seal.CipherText()
+          // 暗号文を格納
+          CipherText.load(context,B[i][j])
+          // 復号
+          const plainText = decryptor.decrypt(CipherText)
+          // Decode
+          const decoded = batchEncoder.decode(plainText)
+          if(j==1||j==2||j==4){
             // 配列を日本語に変換
-            // const decodedTEXT = Encoding.codeToString(decoded)
+            const decodedTEXT = Encoding.codeToString(decoded)
+            C += decodedTEXT+","
+          }else if(j==B[i].length-1){
             C += decoded[0]+"\n"
           }else{
-            C += B[i][j]+","
+            C += decoded[0]+","
           }
         }
       }
     }
-
     // csvのダウンロード
     const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
     const link =document.createElement('a');

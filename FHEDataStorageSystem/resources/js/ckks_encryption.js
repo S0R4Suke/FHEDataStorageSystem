@@ -30,7 +30,7 @@ window.addEventListener('load',function(){
   
     if (csvfile_content.type === 'text/csv') {
       csvreader.onload = () => {
-        var tmp = csvreader.result.split('\n')
+        var tmp = csvreader.result.split('\r\n')
         for (var i = 0; i < tmp.length; i++){
           // csvの１行のデータを取り出す
           var row_data = tmp[i]
@@ -101,6 +101,7 @@ window.CKKSEncryption = async function(){
     ////////////////////////
 
     // Create the PlainText(s) 
+    const PlainText = seal.PlainText()
     const CipherText = seal.CipherText()
 
     ////////////////////////
@@ -114,6 +115,12 @@ window.CKKSEncryption = async function(){
         context,
         UploadedPublicKey
     )
+
+    // 定義
+    // encryptor.encrypt(
+    //   PlainText,
+    //   CipherText
+    // )
 
     ////////////////////////
     // Homomorphic Functions
@@ -132,22 +139,23 @@ window.CKKSEncryption = async function(){
         }
       }else{
         for(var j=0;j<B[i].length;j++){
-          if(j==2){
-            console.log(B[i][j])
-            const PlainText = ckksEncoder.encode(
+          let PlainTextA
+          if(j==1||j==2||j==4){
+            PlainTextA = ckksEncoder.encode(
+              Float64Array.from(Encoding.stringToCode(B[i][j])),Math.pow(2, 16)            
+            )
+          }else{
+            PlainTextA = ckksEncoder.encode(
               Float64Array.from([B[i][j]]),Math.pow(2, 16)
             )
-            // 定義
-            encryptor.encrypt(
-              PlainText,
-              CipherText
-            )
-            // 暗号化する
-            const cipherText = encryptor.encrypt(PlainText)
-            const Cipher = cipherText.save()
+          }
+          // 暗号化する
+          const cipherText = encryptor.encrypt(PlainTextA)
+          const Cipher = cipherText.save()
+          if(j == B[i].length-1){
             C += Cipher+"\n"
           }else{
-            C += B[i][j]+","
+            C += Cipher+","  
           }
         }
       }

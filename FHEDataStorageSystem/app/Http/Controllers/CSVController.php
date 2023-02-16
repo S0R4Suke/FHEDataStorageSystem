@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Exports\Export;
 use App\Imports\Import;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Customer;
+use App\Models\Test;
  
 class CSVController extends Controller
 {
@@ -37,7 +37,7 @@ class CSVController extends Controller
     */
     public function exportCSV($slug) 
     {
-        return Excel::download(new Export, 'users.'.$slug);
+        return Excel::download(new Export, 'exportDB.'.$slug);
     }
     
 }

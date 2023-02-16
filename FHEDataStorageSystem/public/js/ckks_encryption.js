@@ -6292,7 +6292,7 @@ window.addEventListener('load', function () {
 
     if (csvfile_content.type === 'text/csv') {
       csvreader.onload = function () {
-        var tmp = csvreader.result.split('\n');
+        var tmp = csvreader.result.split('\r\n');
         for (var i = 0; i < tmp.length; i++) {
           // csvの１行のデータを取り出す
           var row_data = tmp[i];
@@ -6306,7 +6306,7 @@ window.addEventListener('load', function () {
   });
 });
 window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, encParms, context, publicBase64Key, UploadedPublicKey, CipherText, ckksEncoder, encryptor, C, i, j, PlainText, cipherText, Cipher, blob, link;
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, ckksEncoder, encryptor, C, i, j, PlainTextA, cipherText, Cipher, blob, link;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6352,11 +6352,17 @@ window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         ////////////////////////
 
         // Create the PlainText(s) 
+        PlainText = seal.PlainText();
         CipherText = seal.CipherText(); ////////////////////////
         // Instances
         ////////////////////////
         ckksEncoder = seal.CKKSEncoder(context); // Create an Encryptor
-        encryptor = seal.Encryptor(context, UploadedPublicKey); ////////////////////////
+        encryptor = seal.Encryptor(context, UploadedPublicKey); // 定義
+        // encryptor.encrypt(
+        //   PlainText,
+        //   CipherText
+        // )
+        ////////////////////////
         // Homomorphic Functions
         ////////////////////////
         // 暗号化したデータを使って配列を編集
@@ -6372,16 +6378,19 @@ window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
             }
           } else {
             for (j = 0; j < B[i].length; j++) {
-              if (j == 2) {
-                console.log(B[i][j]);
-                PlainText = ckksEncoder.encode(Float64Array.from([B[i][j]]), Math.pow(2, 16)); // 定義
-                encryptor.encrypt(PlainText, CipherText);
-                // 暗号化する
-                cipherText = encryptor.encrypt(PlainText);
-                Cipher = cipherText.save();
+              PlainTextA = void 0;
+              if (j == 1 || j == 2 || j == 4) {
+                PlainTextA = ckksEncoder.encode(Float64Array.from(encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().stringToCode(B[i][j])), Math.pow(2, 16));
+              } else {
+                PlainTextA = ckksEncoder.encode(Float64Array.from([B[i][j]]), Math.pow(2, 16));
+              }
+              // 暗号化する
+              cipherText = encryptor.encrypt(PlainTextA);
+              Cipher = cipherText.save();
+              if (j == B[i].length - 1) {
                 C += Cipher + "\n";
               } else {
-                C += B[i][j] + ",";
+                C += Cipher + ",";
               }
             }
           }
@@ -6397,7 +6406,7 @@ window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         //作ったリンクタグをクリックさせる
         document.body.appendChild(link);
         link.click();
-      case 27:
+      case 28:
       case "end":
         return _context.stop();
     }

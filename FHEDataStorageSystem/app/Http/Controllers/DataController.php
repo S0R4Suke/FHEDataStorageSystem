@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customer;
+use App\Models\Test;
 
 class DataController extends Controller
 {
     public function GetData(){
-        $data = Customer::all();
+        $data = Test::all();
         return view('calculation',['data' => $data]);
     }
 }

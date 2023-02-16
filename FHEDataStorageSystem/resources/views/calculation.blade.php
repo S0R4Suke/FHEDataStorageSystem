@@ -50,7 +50,7 @@
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" id="seckey">
                   </div>
-                <p class="card-text">復号するCSVファイルを選択してください</p>
+                <p class="card-text">復号するファイルを選択してください</p>
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" id="result">
                 </div>

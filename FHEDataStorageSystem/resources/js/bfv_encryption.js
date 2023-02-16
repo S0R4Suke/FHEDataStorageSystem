@@ -30,12 +30,11 @@ window.addEventListener('load',function(){
   
     if (csvfile_content.type === 'text/csv') {
       csvreader.onload = () => {
-        var tmp = csvreader.result.split('\n')
+        var tmp = csvreader.result.split('\r\n')
         for (var i = 0; i < tmp.length; i++){
           // csvの１行のデータを取り出す
           var row_data = tmp[i]
           B[i] = row_data.split(',')
-          // console.log(B[i])
         }
       }
       csvreader.readAsText(csvfile_content)
@@ -117,9 +116,6 @@ window.BFVEncryption = async function(){
     // Instances
     ////////////////////////
 
-    // Create an Evaluator
-    const evaluator = seal.Evaluator(context)
-
     const batchEncoder = seal.BatchEncoder(context)
 
     // Create an Encryptor
@@ -128,11 +124,15 @@ window.BFVEncryption = async function(){
         UploadedPublicKey
     )
 
+    // 定義
+    encryptor.encrypt(
+      PlainText,
+      CipherText
+    )
+
     ////////////////////////
     // Homomorphic Functions
     ////////////////////////
-
-    // 暗号化したデータを使って配列を編集
     var C = ""
     for(var i=0;i<B.length;i++){
       if(i == 0){
@@ -145,22 +145,23 @@ window.BFVEncryption = async function(){
         }
       }else{
         for(var j=0;j<B[i].length;j++){
-          if(j==2){
-            const PlainText = batchEncoder.encode(
+          let PlainTextA
+          if(j==1||j==2||j==4){
+            PlainTextA = batchEncoder.encode(
+              Int32Array.from(Encoding.stringToCode(B[i][j]))            
+            )
+          }else{
+            PlainTextA = batchEncoder.encode(
               Int32Array.from([B[i][j]])
-              // Int32Array.from(Encoding.stringToCode(B[i][j]))
             )
-            // 定義
-            encryptor.encrypt(
-              PlainText,
-              CipherText
-            )
-            // 暗号化する
-            const cipherText = encryptor.encrypt(PlainText)
-            const Cipher = cipherText.save()
+          }
+          // 暗号化する
+          const cipherText = encryptor.encrypt(PlainTextA)
+          const Cipher = cipherText.save()
+          if(j == B[i].length-1){
             C += Cipher+"\n"
           }else{
-            C += B[i][j]+","
+            C += Cipher+","  
           }
         }
       }

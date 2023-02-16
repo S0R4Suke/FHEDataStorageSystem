@@ -121,7 +121,7 @@ window.CKKSDecryption = async function(){
 
     // 暗号化したデータを使って配列を編集
     var C = ""
-    for(var i=0;i<B.length;i++){
+    for(var i=0;i<B.length-1;i++){
       if(i == 0){
         for(var j=0;j<B[i].length;j++){
           if(j == B[i].length-1){
@@ -132,23 +132,22 @@ window.CKKSDecryption = async function(){
         }
       }else{
         for(var j=0;j<B[i].length;j++){
-          if(j==2){
-            // 暗号文を格納する変数を定義
-            const CipherText = seal.CipherText()
-            // 暗号文を格納
-            CipherText.load(context,B[i][j])
-            const DEBUG = CipherText.save()
-            console.log(DEBUG)
-            // 復号
-            const plainText = decryptor.decrypt(CipherText)
-            // Decode
-            const decoded = ckksEncoder.decode(plainText)
+          // 暗号文を格納する変数を定義
+          const CipherText = seal.CipherText()
+          // 暗号文を格納
+          CipherText.load(context,B[i][j])
+          // 復号
+          const plainText = decryptor.decrypt(CipherText)
+          // Decode
+          const decoded = ckksEncoder.decode(plainText)
+          if(j==1||j==2||j==4){
             // 配列を日本語に変換
-            // const decodedTEXT = Encoding.codeToString(decoded)
-            C += Math.round(decoded[0])+"\n"
-            console.log(decoded)
+            const decodedTEXT = Encoding.codeToString(decoded)
+            C += decodedTEXT+","
+          }else if(j==B[i].length-1){
+            C += decoded[0]+"\n"
           }else{
-            C += B[i][j]+","
+            C += decoded[0]+","
           }
         }
       }

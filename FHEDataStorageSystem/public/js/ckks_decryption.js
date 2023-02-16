@@ -6306,7 +6306,7 @@ window.addEventListener('load', function () {
   });
 });
 window.CKKSDecryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, encParms, context, secretBase64Key, UploadedSecretKey, ckksEncoder, decryptor, C, i, j, CipherText, DEBUG, plainText, decoded, blob, link;
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, encParms, context, secretBase64Key, UploadedSecretKey, ckksEncoder, decryptor, C, i, j, CipherText, plainText, decoded, decodedTEXT, blob, link;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6364,7 +6364,7 @@ window.CKKSDecryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         ////////////////////////
         // 暗号化したデータを使って配列を編集
         C = "";
-        for (i = 0; i < B.length; i++) {
+        for (i = 0; i < B.length - 1; i++) {
           if (i == 0) {
             for (j = 0; j < B[i].length; j++) {
               if (j == B[i].length - 1) {
@@ -6375,20 +6375,20 @@ window.CKKSDecryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
             }
           } else {
             for (j = 0; j < B[i].length; j++) {
-              if (j == 2) {
-                // 暗号文を格納する変数を定義
-                CipherText = seal.CipherText(); // 暗号文を格納
-                CipherText.load(context, B[i][j]);
-                DEBUG = CipherText.save();
-                console.log(DEBUG);
-                // 復号
-                plainText = decryptor.decrypt(CipherText); // Decode
-                decoded = ckksEncoder.decode(plainText); // 配列を日本語に変換
-                // const decodedTEXT = Encoding.codeToString(decoded)
-                C += Math.round(decoded[0]) + "\n";
-                console.log(decoded);
+              // 暗号文を格納する変数を定義
+              CipherText = seal.CipherText(); // 暗号文を格納
+              CipherText.load(context, B[i][j]);
+              // 復号
+              plainText = decryptor.decrypt(CipherText); // Decode
+              decoded = ckksEncoder.decode(plainText);
+              if (j == 1 || j == 2 || j == 4) {
+                // 配列を日本語に変換
+                decodedTEXT = encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().codeToString(decoded);
+                C += decodedTEXT + ",";
+              } else if (j == B[i].length - 1) {
+                C += decoded[0] + "\n";
               } else {
-                C += B[i][j] + ",";
+                C += decoded[0] + ",";
               }
             }
           }
