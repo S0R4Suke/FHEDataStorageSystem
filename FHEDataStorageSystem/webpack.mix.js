@@ -12,6 +12,14 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/bfv_keygenerate.js', 'public/js')
+    .js('resources/js/bfv_encryption.js', 'public/js')
+    .js('resources/js/bfv_decryption.js', 'public/js')
+    .js('resources/js/bfv_calculation.js', 'public/js')
+    .js('resources/js/ckks_keygenerate.js', 'public/js')
+    .js('resources/js/ckks_encryption.js', 'public/js')
+    .js('resources/js/ckks_decryption.js', 'public/js')
+    .js('resources/js/ckks_calculation.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

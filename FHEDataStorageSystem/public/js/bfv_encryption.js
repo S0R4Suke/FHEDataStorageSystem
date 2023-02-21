@@ -6303,11 +6303,16 @@ window.addEventListener('load', function () {
     }
   });
 });
+<<<<<<< HEAD
 String.prototype.bytes = function () {
   return encodeURIComponent(this).replace(/%../g, "x").length;
 };
 window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, batchEncoder, encryptor, C, startTime, i, j, PlainTextA, cipherText, Cipher, blob, link;
+=======
+window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, publicBase64Key, UploadedPublicKey, PlainText, CipherText, batchEncoder, encryptor, C, i, j, PlainTextA, cipherText, Cipher, blob, link;
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6368,9 +6373,13 @@ window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
         ////////////////////////
         // Homomorphic Functions
         ////////////////////////
+<<<<<<< HEAD
         C = ""; // const ExecutionTime = [100]
         // for(var n = 0;n<100;n++){
         startTime = performance.now(); // 開始時間
+=======
+        C = "";
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
         for (i = 0; i < B.length; i++) {
           if (i == 0) {
             for (j = 0; j < B[i].length; j++) {
@@ -6392,13 +6401,20 @@ window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
               cipherText = encryptor.encrypt(PlainTextA);
               Cipher = cipherText.save();
               if (j == B[i].length - 1) {
+<<<<<<< HEAD
                 C += Cipher.length + "\n";
               } else {
                 C += Cipher.length + ",";
+=======
+                C += Cipher + "\n";
+              } else {
+                C += Cipher + ",";
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
               }
             }
           }
         }
+<<<<<<< HEAD
         //   const endTime = performance.now() // 終了時間
         //   ExecutionTime[n] = endTime - startTime
         // }
@@ -6413,6 +6429,20 @@ window.BFVEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
         document.body.appendChild(link);
         link.click();
       case 32:
+=======
+
+        // csvのダウンロード
+        blob = new Blob([C], {
+          type: "text/csv"
+        }); //配列に上記の文字列(str)を設定
+        link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "BFV_Encrypted.csv";
+        //作ったリンクタグをクリックさせる
+        document.body.appendChild(link);
+        link.click();
+      case 31:
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
       case "end":
         return _context.stop();
     }

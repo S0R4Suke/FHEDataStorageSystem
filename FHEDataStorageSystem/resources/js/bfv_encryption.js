@@ -42,10 +42,13 @@ window.addEventListener('load',function(){
   })
 })
 
+<<<<<<< HEAD
 String.prototype.bytes = function () {
   return(encodeURIComponent(this).replace(/%../g,"x").length);
 }
 
+=======
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 window.BFVEncryption = async function(){
     const seal = await SEAL()
 
@@ -138,6 +141,7 @@ window.BFVEncryption = async function(){
     // Homomorphic Functions
     ////////////////////////
     var C = ""
+<<<<<<< HEAD
     // const ExecutionTime = [100]
     // for(var n = 0;n<100;n++){
       const startTime = performance.now() // 開始時間
@@ -181,6 +185,46 @@ window.BFVEncryption = async function(){
     const link =document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download ="BFV_Encrypted_byte.txt";
+=======
+    for(var i=0;i<B.length;i++){
+      if(i == 0){
+        for(var j=0;j<B[i].length;j++){
+          if(j == B[i].length-1){
+            C += B[i][j]+"\n"
+          }else{
+            C += B[i][j]+","
+          }
+        }
+      }else{
+        for(var j=0;j<B[i].length;j++){
+          let PlainTextA
+          if(j==1||j==2||j==4){
+            PlainTextA = batchEncoder.encode(
+              Int32Array.from(Encoding.stringToCode(B[i][j]))            
+            )
+          }else{
+            PlainTextA = batchEncoder.encode(
+              Int32Array.from([B[i][j]])
+            )
+          }
+          // 暗号化する
+          const cipherText = encryptor.encrypt(PlainTextA)
+          const Cipher = cipherText.save()
+          if(j == B[i].length-1){
+            C += Cipher+"\n"
+          }else{
+            C += Cipher+","  
+          }
+        }
+      }
+    }
+    
+    // csvのダウンロード
+    const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
+    const link =document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download ="BFV_Encrypted.csv";
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
     //作ったリンクタグをクリックさせる
     document.body.appendChild(link);
     link.click();

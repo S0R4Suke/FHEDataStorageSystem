@@ -52,38 +52,28 @@ window.CKKSKeyGenerate = async function(){
     const keyGenerator = seal.KeyGenerator(
       context
     )
-    const ExecutionTime = [1000]
-    for(var i = 0;i<1000;i++){
-      const startTime = performance.now() // 開始時間
-      // Get the SecretKey from the keyGenerator
-      const Secret_key_Keypair_A_ = keyGenerator.secretKey()
 
-      // Get the PublicKey from the keyGenerator
-      const Public_key_Keypair_A_ = keyGenerator.createPublicKey()
-      const endTime = performance.now() // 終了時間
-      ExecutionTime[i] = endTime - startTime
-    }
-    // // Get the SecretKey from the keyGenerator
-    // const Secret_key_Keypair_A_ = keyGenerator.secretKey()
+    // Get the SecretKey from the keyGenerator
+    const Secret_key_Keypair_A_ = keyGenerator.secretKey()
 
 
-    // // Get the PublicKey from the keyGenerator
-    // const Public_key_Keypair_A_ = keyGenerator.createPublicKey()
+    // Get the PublicKey from the keyGenerator
+    const Public_key_Keypair_A_ = keyGenerator.createPublicKey()
 
-    // // Save SecKey
-    // const Secret_key = Secret_key_Keypair_A_.save()
+    // Save SecKey
+    const Secret_key = Secret_key_Keypair_A_.save()
 
-    // // Save PubKey
-    // const Public_key = Public_key_Keypair_A_.save()
+    // Save PubKey
+    const Public_key = Public_key_Keypair_A_.save()
     
-    // document.getElementById("secretkey").value = Secret_key
-    // document.getElementById("publickey").value = Public_key
+    document.getElementById("secretkey").value = Secret_key
+    document.getElementById("publickey").value = Public_key
     
     
     // Download section
     const element = document.createElement('a')
     document.body.appendChild(element)
-    const blobPub = new Blob([ExecutionTime],{type:"text/plain"})
+    const blobPub = new Blob([Public_key],{type:"text/plain"})
     element.href = window.URL.createObjectURL(blobPub);
     element.download = "CKKS_PubKey.text"
     element.click()

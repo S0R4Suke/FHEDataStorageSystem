@@ -1,0 +1,12 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/bfv_keygenerate.js": "/js/bfv_keygenerate.js",
+    "/js/bfv_encryption.js": "/js/bfv_encryption.js",
+    "/js/bfv_decryption.js": "/js/bfv_decryption.js",
+    "/js/bfv_calculation.js": "/js/bfv_calculation.js",
+    "/js/ckks_keygenerate.js": "/js/ckks_keygenerate.js",
+    "/js/ckks_encryption.js": "/js/ckks_encryption.js",
+    "/js/ckks_decryption.js": "/js/ckks_decryption.js",
+    "/js/ckks_calculation.js": "/js/ckks_calculation.js",
+    "/css/app.css": "/css/app.css"
+}

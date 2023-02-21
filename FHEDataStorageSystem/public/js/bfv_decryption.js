@@ -6306,7 +6306,11 @@ window.addEventListener('load', function () {
   });
 });
 window.BFVDecryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+<<<<<<< HEAD
   var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, secretBase64Key, UploadedSecretKey, batchEncoder, decryptor, C, ExecutionTime, n, startTime, i, j, CipherText, plainText, decoded, decodedTEXT, endTime, blob, link;
+=======
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, secretBase64Key, UploadedSecretKey, batchEncoder, decryptor, C, i, j, CipherText, plainText, decoded, decodedTEXT, blob, link;
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6366,6 +6370,7 @@ window.BFVDecryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
         ////////////////////////
         // 暗号化したデータを使って配列を編集
         C = "";
+<<<<<<< HEAD
         ExecutionTime = [100];
         for (n = 0; n < 100; n++) {
           startTime = performance.now(); // 開始時間
@@ -6423,6 +6428,49 @@ window.BFVDecryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator
         document.body.appendChild(link);
         link.click();
       case 29:
+=======
+        for (i = 0; i < B.length - 1; i++) {
+          if (i == 0) {
+            for (j = 0; j < B[i].length; j++) {
+              if (j == B[i].length - 1) {
+                C += B[i][j] + "\n";
+              } else {
+                C += B[i][j] + ",";
+              }
+            }
+          } else {
+            for (j = 0; j < B[i].length; j++) {
+              // 暗号文を格納する変数を定義
+              CipherText = seal.CipherText(); // 暗号文を格納
+              CipherText.load(context, B[i][j]);
+              // 復号
+              plainText = decryptor.decrypt(CipherText); // Decode
+              decoded = batchEncoder.decode(plainText);
+              if (j == 1 || j == 2 || j == 4) {
+                // 配列を日本語に変換
+                decodedTEXT = encoding_japanese__WEBPACK_IMPORTED_MODULE_0___default().codeToString(decoded);
+                C += decodedTEXT + ",";
+              } else if (j == B[i].length - 1) {
+                C += decoded[0] + "\n";
+              } else {
+                C += decoded[0] + ",";
+              }
+            }
+          }
+        }
+        // csvのダウンロード
+        blob = new Blob([C], {
+          type: "text/csv"
+        }); //配列に上記の文字列(str)を設定
+        link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "BFV_Decrypted.csv";
+
+        //作ったリンクタグをクリックさせる
+        document.body.appendChild(link);
+        link.click();
+      case 28:
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
       case "end":
         return _context.stop();
     }

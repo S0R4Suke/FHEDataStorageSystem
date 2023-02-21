@@ -98,7 +98,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // export async function KeyGenerate() {
 window.CKKSKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+<<<<<<< HEAD
   var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, encParms, context, keyGenerator, ExecutionTime, i, startTime, Secret_key_Keypair_A_, Public_key_Keypair_A_, endTime, element, blobPub;
+=======
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, encParms, context, keyGenerator, Secret_key_Keypair_A_, Public_key_Keypair_A_, Secret_key, Public_key, element, blobPub;
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -136,6 +140,7 @@ window.CKKSKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerat
         // Keys
         ////////////////////////
         // Create a new KeyGenerator (use uploaded keys if applicable)
+<<<<<<< HEAD
         keyGenerator = seal.KeyGenerator(context);
         ExecutionTime = [1000];
         for (i = 0; i < 1000; i++) {
@@ -160,18 +165,35 @@ window.CKKSKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerat
 
         // document.getElementById("secretkey").value = Secret_key
         // document.getElementById("publickey").value = Public_key
+=======
+        keyGenerator = seal.KeyGenerator(context); // Get the SecretKey from the keyGenerator
+        Secret_key_Keypair_A_ = keyGenerator.secretKey(); // Get the PublicKey from the keyGenerator
+        Public_key_Keypair_A_ = keyGenerator.createPublicKey(); // Save SecKey
+        Secret_key = Secret_key_Keypair_A_.save(); // Save PubKey
+        Public_key = Public_key_Keypair_A_.save();
+        document.getElementById("secretkey").value = Secret_key;
+        document.getElementById("publickey").value = Public_key;
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 
         // Download section
         element = document.createElement('a');
         document.body.appendChild(element);
+<<<<<<< HEAD
         blobPub = new Blob([ExecutionTime], {
+=======
+        blobPub = new Blob([Public_key], {
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
           type: "text/plain"
         });
         element.href = window.URL.createObjectURL(blobPub);
         element.download = "CKKS_PubKey.text";
         element.click();
         document.body.removeChild(element);
+<<<<<<< HEAD
       case 23:
+=======
+      case 27:
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
       case "end":
         return _context.stop();
     }

@@ -96,6 +96,7 @@ window.BFVCalculation = async function(){
     ////////////////////////
     // Variables
     ////////////////////////
+<<<<<<< HEAD
     const CipherAGE = []
     const CipherPOINT = []
     const CipherSOLD = []
@@ -114,6 +115,18 @@ window.BFVCalculation = async function(){
     // const AGESUM = seal.CipherText()
     // const POINTSUM = seal.CipherText()
     // const SOLDSUM = seal.CipherText()
+=======
+    const CipherRevenues = []
+
+    for(var i = 0;i<data.length;i++){
+      CipherRevenues[i] = seal.CipherText()
+      const tmp = data[i].revenues
+      CipherRevenues[i].load(context,tmp)
+    }
+
+    // Create the PlainText(s) 
+    const CipherSUM = seal.CipherText()
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 
     ////////////////////////
     // Instances
@@ -125,6 +138,7 @@ window.BFVCalculation = async function(){
     ////////////////////////
     // Homomorphic Functions
     ////////////////////////
+<<<<<<< HEAD
     const ExecutionTime = [1000]
     for(var n = 0;n<1000;n++){
       const startTime = performance.now() // 開始時間
@@ -172,6 +186,22 @@ window.BFVCalculation = async function(){
     link.download ="BFV_Result.txt";
     //作ったリンクタグをクリックさせる
     document.body.appendChild(link);
+=======
+    for(var i = 1;i<CipherRevenues.length;i++){
+      if(i==1){
+        evaluator.add(CipherRevenues[i-1],CipherRevenues[i],CipherSUM)
+      }else{
+        evaluator.add(CipherSUM,CipherRevenues[i],CipherSUM)
+      }
+    }
+    const Result = CipherSUM.save()
+    console.log(Result)
+
+    const blob = new Blob([Result],{type:"text/plain"});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'BFV_Result_Enc.txt';
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
     link.click();
 }
 
@@ -260,6 +290,10 @@ window.BFVCalc_Dec = async function(){
     ////////////////////////
     // Homomorphic Functions
     ////////////////////////
+<<<<<<< HEAD
+=======
+
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
     // 暗号文を格納する変数を定義
     const CipherText = seal.CipherText()
     // 暗号文を格納
@@ -271,9 +305,17 @@ window.BFVCalc_Dec = async function(){
     // 配列を日本語に変換
     const Result = "合計:" + decoded[0]
 
+<<<<<<< HEAD
     const blob = new Blob([Result],{type:"text/plain"})
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
     link.download = 'BFV_Result_Dec.txt'
     link.click()
+=======
+    const blob = new Blob([Result],{type:"text/plain"});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'BFV_Result_Dec.txt';
+    link.click();
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 }

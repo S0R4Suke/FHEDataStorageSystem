@@ -121,6 +121,7 @@ window.CKKSDecryption = async function(){
 
     // 暗号化したデータを使って配列を編集
     var C = ""
+<<<<<<< HEAD
     const ExecutionTime = [100]
     for(var n = 0;n<100;n++){
       const startTime = performance.now() // 開始時間
@@ -175,5 +176,47 @@ window.CKKSDecryption = async function(){
     link.download ="CKKS_Decrypted.txt"
     //作ったリンクタグをクリックさせる
     document.body.appendChild(link)
+=======
+    for(var i=0;i<B.length-1;i++){
+      if(i == 0){
+        for(var j=0;j<B[i].length;j++){
+          if(j == B[i].length-1){
+            C += B[i][j]+"\n"
+          }else{
+            C += B[i][j]+","
+          }
+        }
+      }else{
+        for(var j=0;j<B[i].length;j++){
+          // 暗号文を格納する変数を定義
+          const CipherText = seal.CipherText()
+          // 暗号文を格納
+          CipherText.load(context,B[i][j])
+          // 復号
+          const plainText = decryptor.decrypt(CipherText)
+          // Decode
+          const decoded = ckksEncoder.decode(plainText)
+          if(j==1||j==2||j==4){
+            // 配列を日本語に変換
+            const decodedTEXT = Encoding.codeToString(decoded)
+            C += decodedTEXT+","
+          }else if(j==B[i].length-1){
+            C += decoded[0]+"\n"
+          }else{
+            C += decoded[0]+","
+          }
+        }
+      }
+    }
+
+    // csvのダウンロード
+    const blob =new Blob([C],{type:"text/csv"}); //配列に上記の文字列(str)を設定
+    const link =document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download ="CKKS_Decrypted.csv";
+
+    //作ったリンクタグをクリックさせる
+    document.body.appendChild(link);
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
     link.click();
 }

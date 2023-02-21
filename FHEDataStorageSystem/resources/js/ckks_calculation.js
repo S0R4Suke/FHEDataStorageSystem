@@ -88,6 +88,7 @@ window.CKKSCalculation = async function(){
     ////////////////////////
     // Variables
     ////////////////////////
+<<<<<<< HEAD
     const CipherAGE = []
     const CipherPOINT = []
     const CipherSOLD = []
@@ -106,6 +107,18 @@ window.CKKSCalculation = async function(){
     const AGESUM = seal.CipherText()
     const POINTSUM = seal.CipherText()
     const SOLDSUM = seal.CipherText()
+=======
+    const CipherRevenues = []
+
+    for(var i = 0;i<data.length;i++){
+      CipherRevenues[i] = seal.CipherText()
+      const tmp = data[i].revenues
+      CipherRevenues[i].load(context,tmp)
+    }
+
+    // Create the PlainText(s) 
+    const CipherSUM = seal.CipherText()
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 
     ////////////////////////
     // Instances
@@ -117,6 +130,7 @@ window.CKKSCalculation = async function(){
     ////////////////////////
     // Homomorphic Functions
     ////////////////////////
+<<<<<<< HEAD
     // const ExecutionTime = [1000]
     // // for(var n = 0;n<1000;n++){
     // //   const startTime = performance.now() // 開始時間
@@ -172,6 +186,23 @@ window.CKKSCalculation = async function(){
     // //作ったリンクタグをクリックさせる
     // document.body.appendChild(link);
     // link.click();
+=======
+    for(var i = 1;i<CipherRevenues.length;i++){
+      if(i==1){
+        evaluator.add(CipherRevenues[i-1],CipherRevenues[i],CipherSUM)
+      }else{
+        evaluator.add(CipherSUM,CipherRevenues[i],CipherSUM)
+      }
+    }
+    const Result = CipherSUM.save()
+    console.log(Result)
+
+    const blob = new Blob([Result],{type:"text/plain"});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'CKKS_Result_Enc.txt';
+    link.click();
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 }
 
 // 計算結果の復号
@@ -263,9 +294,17 @@ window.CKKSCalc_Dec = async function(){
     // 配列を日本語に変換
     const Result = "合計:" + decoded[0]
 
+<<<<<<< HEAD
     const blob = new Blob([Result],{type:"text/plain"})
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
     link.download = 'CKKS_Result_Dec.txt'
     link.click()
+=======
+    const blob = new Blob([Result],{type:"text/plain"});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'CKKS_Result_Dec.txt';
+    link.click();
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 }

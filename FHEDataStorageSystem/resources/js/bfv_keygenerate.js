@@ -61,13 +61,14 @@ window.BFVKeyGenerate = async function(){
     const keyGenerator = seal.KeyGenerator(
       context
     )
-    const startTime = performance.now() // 開始時間
+
     // Get the SecretKey from the keyGenerator
     const Secret_key_Keypair_A_ = keyGenerator.secretKey()
 
+
     // Get the PublicKey from the keyGenerator
     const Public_key_Keypair_A_ = keyGenerator.createPublicKey()
-  
+
     // Save SecKey
     const Secret_key = Secret_key_Keypair_A_.save()
 
@@ -83,8 +84,7 @@ window.BFVKeyGenerate = async function(){
     document.body.appendChild(element)
     const blobPub = new Blob([Public_key],{type:"text/plain"})
     element.href = window.URL.createObjectURL(blobPub);
-    element.download = "BFV_PublicKey.text"
+    element.download = "BFV_PubKey.text"
     element.click()
     document.body.removeChild(element)
-
 }

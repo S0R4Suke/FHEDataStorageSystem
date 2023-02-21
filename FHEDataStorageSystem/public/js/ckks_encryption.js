@@ -6366,9 +6366,13 @@ window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         // Homomorphic Functions
         ////////////////////////
         // 暗号化したデータを使って配列を編集
+<<<<<<< HEAD
         C = ""; // const ExecutionTime = [100]
         // for(var n = 0;n<100;n++){
         // const startTime = performance.now() // 開始時間
+=======
+        C = "";
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
         for (i = 0; i < B.length; i++) {
           if (i == 0) {
             for (j = 0; j < B[i].length; j++) {
@@ -6390,13 +6394,20 @@ window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
               cipherText = encryptor.encrypt(PlainTextA);
               Cipher = cipherText.save();
               if (j == B[i].length - 1) {
+<<<<<<< HEAD
                 C += Cipher.length + ",";
               } else {
                 C += Cipher.length + ",";
+=======
+                C += Cipher + "\n";
+              } else {
+                C += Cipher + ",";
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
               }
             }
           }
         }
+<<<<<<< HEAD
         // const endTime = performance.now() // 終了時間
         // ExecutionTime[n] = endTime - startTime
         // }
@@ -6407,6 +6418,16 @@ window.CKKSEncryption = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = "CKKS_Encrypted_byte.txt";
+=======
+
+        // csvのダウンロード
+        blob = new Blob([C], {
+          type: "text/csv"
+        }); //配列に上記の文字列(str)を設定
+        link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "CKKS_Encrypted.csv";
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
         //作ったリンクタグをクリックさせる
         document.body.appendChild(link);
         link.click();

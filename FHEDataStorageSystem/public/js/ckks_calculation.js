@@ -6296,7 +6296,11 @@ window.addEventListener('load', function () {
 
 // 計算結果
 window.CKKSCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+<<<<<<< HEAD
   var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, CipherAGE, CipherPOINT, CipherSOLD, i, AGESUM, POINTSUM, SOLDSUM, evaluator, ResultAGE, ResultPOINT, ResultSOLD, link, blobage;
+=======
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, CipherRevenues, i, tmp, CipherSUM, evaluator, Result, blob, link;
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6338,6 +6342,7 @@ window.CKKSCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerat
         ////////////////////////
         // Variables
         ////////////////////////
+<<<<<<< HEAD
         CipherAGE = [];
         CipherPOINT = [];
         CipherSOLD = [];
@@ -6354,12 +6359,24 @@ window.CKKSCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerat
         AGESUM = seal.CipherText();
         POINTSUM = seal.CipherText();
         SOLDSUM = seal.CipherText(); ////////////////////////
+=======
+        CipherRevenues = [];
+        for (i = 0; i < data.length; i++) {
+          CipherRevenues[i] = seal.CipherText();
+          tmp = data[i].revenues;
+          CipherRevenues[i].load(context, tmp);
+        }
+
+        // Create the PlainText(s) 
+        CipherSUM = seal.CipherText(); ////////////////////////
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
         // Instances
         ////////////////////////
         // Create an Evaluator
         evaluator = seal.Evaluator(context); ////////////////////////
         // Homomorphic Functions
         ////////////////////////
+<<<<<<< HEAD
         // const ExecutionTime = [1000]
         // // for(var n = 0;n<1000;n++){
         // //   const startTime = performance.now() // 開始時間
@@ -6416,6 +6433,25 @@ window.CKKSCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerat
         // document.body.appendChild(link);
         // link.click();
       case 31:
+=======
+        for (i = 1; i < CipherRevenues.length; i++) {
+          if (i == 1) {
+            evaluator.add(CipherRevenues[i - 1], CipherRevenues[i], CipherSUM);
+          } else {
+            evaluator.add(CipherSUM, CipherRevenues[i], CipherSUM);
+          }
+        }
+        Result = CipherSUM.save();
+        console.log(Result);
+        blob = new Blob([Result], {
+          type: "text/plain"
+        });
+        link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'CKKS_Result_Enc.txt';
+        link.click();
+      case 26:
+>>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
       case "end":
         return _context.stop();
     }
