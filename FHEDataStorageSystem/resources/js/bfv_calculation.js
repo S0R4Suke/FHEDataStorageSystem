@@ -96,7 +96,6 @@ window.BFVCalculation = async function(){
     ////////////////////////
     // Variables
     ////////////////////////
-<<<<<<< HEAD
     const CipherAGE = []
     const CipherPOINT = []
     const CipherSOLD = []
@@ -115,18 +114,6 @@ window.BFVCalculation = async function(){
     // const AGESUM = seal.CipherText()
     // const POINTSUM = seal.CipherText()
     // const SOLDSUM = seal.CipherText()
-=======
-    const CipherRevenues = []
-
-    for(var i = 0;i<data.length;i++){
-      CipherRevenues[i] = seal.CipherText()
-      const tmp = data[i].revenues
-      CipherRevenues[i].load(context,tmp)
-    }
-
-    // Create the PlainText(s) 
-    const CipherSUM = seal.CipherText()
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 
     ////////////////////////
     // Instances
@@ -138,71 +125,48 @@ window.BFVCalculation = async function(){
     ////////////////////////
     // Homomorphic Functions
     ////////////////////////
-<<<<<<< HEAD
-    const ExecutionTime = [1000]
-    for(var n = 0;n<1000;n++){
-      const startTime = performance.now() // 開始時間
-      const AGESUM = seal.CipherText()
-      const POINTSUM = seal.CipherText()
-      const SOLDSUM = seal.CipherText()
-      for(var i = 1;i<CipherAGE.length;i++){
-        if(i==1){
-          evaluator.add(CipherAGE[i-1],CipherAGE[i],AGESUM)
-          evaluator.add(CipherPOINT[i-1],CipherPOINT[i],POINTSUM)
-          evaluator.add(CipherSOLD[i-1],CipherSOLD[i],SOLDSUM)
-        }else{
-          evaluator.add(AGESUM,CipherAGE[i],AGESUM)
-          evaluator.add(POINTSUM,CipherPOINT[i],POINTSUM)
-          evaluator.add(SOLDSUM,CipherSOLD[i],SOLDSUM)
-        }
-      }
-      const endTime = performance.now() // 終了時間
-      ExecutionTime[n] = endTime - startTime
-    }
-    // const ResultAGE = AGESUM.save()
-    // const ResultPOINT = POINTSUM.save()
-    // const ResultSOLD = SOLDSUM.save()
-
-    // const link = document.createElement('a');
-    // const blobage = new Blob([ResultAGE],{type:"text/plain"});
-    // link.href = URL.createObjectURL(blobage);
-    // link.download = 'BFV_Result_Enc_AGE.txt';
-    // link.click();
-
-    // const blobpoint = new Blob([ResultPOINT],{type:"text/plain"});
-    // link.href = URL.createObjectURL(blobpoint);
-    // link.download = 'BFV_Result_Enc_POINT.txt';
-    // link.click();
-
-    // const blobsum = new Blob([ResultSOLD],{type:"text/plain"});
-    // link.href = URL.createObjectURL(blobsum);
-    // link.download = 'BFV_Result_Enc_SOLD.txt';
-    // link.click();
-
-    // csvのダウンロード
-    const blob =new Blob([ExecutionTime],{type:"text/plain"}); //配列に上記の文字列(str)を設定
-    const link =document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download ="BFV_Result.txt";
-    //作ったリンクタグをクリックさせる
-    document.body.appendChild(link);
-=======
-    for(var i = 1;i<CipherRevenues.length;i++){
+    const AGESUM = seal.CipherText()
+    const POINTSUM = seal.CipherText()
+    const SOLDSUM = seal.CipherText()
+    for(var i = 1;i<CipherAGE.length;i++){
       if(i==1){
-        evaluator.add(CipherRevenues[i-1],CipherRevenues[i],CipherSUM)
+        evaluator.add(CipherAGE[i-1],CipherAGE[i],AGESUM)
+        evaluator.add(CipherPOINT[i-1],CipherPOINT[i],POINTSUM)
+        evaluator.add(CipherSOLD[i-1],CipherSOLD[i],SOLDSUM)
       }else{
-        evaluator.add(CipherSUM,CipherRevenues[i],CipherSUM)
+        evaluator.add(AGESUM,CipherAGE[i],AGESUM)
+        evaluator.add(POINTSUM,CipherPOINT[i],POINTSUM)
+        evaluator.add(SOLDSUM,CipherSOLD[i],SOLDSUM)
       }
     }
-    const Result = CipherSUM.save()
-    console.log(Result)
+    const ResultAGE = AGESUM.save()
+    const ResultPOINT = POINTSUM.save()
+    const ResultSOLD = SOLDSUM.save()
 
-    const blob = new Blob([Result],{type:"text/plain"});
     const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'BFV_Result_Enc.txt';
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
+    const blobage = new Blob([ResultAGE],{type:"text/plain"});
+    link.href = URL.createObjectURL(blobage);
+    link.download = 'BFV_Result_Enc_AGE.txt';
     link.click();
+
+    const blobpoint = new Blob([ResultPOINT],{type:"text/plain"});
+    link.href = URL.createObjectURL(blobpoint);
+    link.download = 'BFV_Result_Enc_POINT.txt';
+    link.click();
+
+    const blobsum = new Blob([ResultSOLD],{type:"text/plain"});
+    link.href = URL.createObjectURL(blobsum);
+    link.download = 'BFV_Result_Enc_SOLD.txt';
+    link.click();
+
+    // // csvのダウンロード
+    // const blob =new Blob([ExecutionTime],{type:"text/plain"}); //配列に上記の文字列(str)を設定
+    // const link =document.createElement('a');
+    // link.href = URL.createObjectURL(blob);
+    // link.download ="BFV_Result.txt";
+    // //作ったリンクタグをクリックさせる
+    // document.body.appendChild(link);
+    // link.click();
 }
 
 // 計算結果の復号
@@ -290,10 +254,7 @@ window.BFVCalc_Dec = async function(){
     ////////////////////////
     // Homomorphic Functions
     ////////////////////////
-<<<<<<< HEAD
-=======
-
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
+    
     // 暗号文を格納する変数を定義
     const CipherText = seal.CipherText()
     // 暗号文を格納
@@ -305,17 +266,9 @@ window.BFVCalc_Dec = async function(){
     // 配列を日本語に変換
     const Result = "合計:" + decoded[0]
 
-<<<<<<< HEAD
     const blob = new Blob([Result],{type:"text/plain"})
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
     link.download = 'BFV_Result_Dec.txt'
     link.click()
-=======
-    const blob = new Blob([Result],{type:"text/plain"});
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'BFV_Result_Dec.txt';
-    link.click();
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 }

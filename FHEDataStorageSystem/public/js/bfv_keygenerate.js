@@ -98,11 +98,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // export async function KeyGenerate() {
 window.BFVKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-<<<<<<< HEAD
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, keyGenerator, ExecutionTime, i, startTime, Secret_key_Keypair_A_, Public_key_Keypair_A_, endTime, element, blobPub;
-=======
   var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, keyGenerator, Secret_key_Keypair_A_, Public_key_Keypair_A_, Secret_key, Public_key, element, blobPub;
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -144,27 +140,6 @@ window.BFVKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         // Keys
         ////////////////////////
         // Create a new KeyGenerator (use uploaded keys if applicable)
-<<<<<<< HEAD
-        keyGenerator = seal.KeyGenerator(context);
-        ExecutionTime = [1000];
-        for (i = 0; i < 1000; i++) {
-          startTime = performance.now(); // 開始時間
-          // Get the SecretKey from the keyGenerator
-          Secret_key_Keypair_A_ = keyGenerator.secretKey(); // Get the PublicKey from the keyGenerator
-          Public_key_Keypair_A_ = keyGenerator.createPublicKey();
-          endTime = performance.now(); // 終了時間
-          ExecutionTime[i] = endTime - startTime;
-        }
-
-        // Save SecKey
-        // const Secret_key = Secret_key_Keypair_A_.save()
-
-        // // Save PubKey
-        // const Public_key = Public_key_Keypair_A_.save()
-
-        // document.getElementById("secretkey").value = Secret_key
-        // document.getElementById("publickey").value = Public_key
-=======
         keyGenerator = seal.KeyGenerator(context); // Get the SecretKey from the keyGenerator
         Secret_key_Keypair_A_ = keyGenerator.secretKey(); // Get the PublicKey from the keyGenerator
         Public_key_Keypair_A_ = keyGenerator.createPublicKey(); // Save SecKey
@@ -172,21 +147,10 @@ window.BFVKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         Public_key = Public_key_Keypair_A_.save();
         document.getElementById("secretkey").value = Secret_key;
         document.getElementById("publickey").value = Public_key;
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
 
         // Download section
         element = document.createElement('a');
         document.body.appendChild(element);
-<<<<<<< HEAD
-        blobPub = new Blob([ExecutionTime], {
-          type: "text/plain"
-        });
-        element.href = window.URL.createObjectURL(blobPub);
-        element.download = "ExecutionTime.text";
-        element.click();
-        document.body.removeChild(element);
-      case 25:
-=======
         blobPub = new Blob([Public_key], {
           type: "text/plain"
         });
@@ -195,7 +159,6 @@ window.BFVKeyGenerate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         element.click();
         document.body.removeChild(element);
       case 29:
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
       case "end":
         return _context.stop();
     }

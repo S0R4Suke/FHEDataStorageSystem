@@ -6296,11 +6296,7 @@ window.addEventListener('load', function () {
 
 // 計算結果
 window.BFVCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-<<<<<<< HEAD
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, CipherAGE, CipherPOINT, CipherSOLD, i, evaluator, ExecutionTime, n, startTime, AGESUM, POINTSUM, SOLDSUM, endTime, blob, link;
-=======
-  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, CipherRevenues, i, tmp, CipherSUM, evaluator, Result, blob, link;
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
+  var seal, schemeType, securityLevel, polyModulusDegree, bitSizes, bitSize, encParms, context, CipherAGE, CipherPOINT, CipherSOLD, i, evaluator, AGESUM, POINTSUM, SOLDSUM, ResultAGE, ResultPOINT, ResultSOLD, link, blobage, blobpoint, blobsum;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -6345,7 +6341,6 @@ window.BFVCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         ////////////////////////
         // Variables
         ////////////////////////
-<<<<<<< HEAD
         CipherAGE = [];
         CipherPOINT = [];
         CipherSOLD = [];
@@ -6367,94 +6362,56 @@ window.BFVCalculation = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerato
         // Instances
         ////////////////////////
 
-=======
-        CipherRevenues = [];
-        for (i = 0; i < data.length; i++) {
-          CipherRevenues[i] = seal.CipherText();
-          tmp = data[i].revenues;
-          CipherRevenues[i].load(context, tmp);
-        }
-
-        // Create the PlainText(s) 
-        CipherSUM = seal.CipherText(); ////////////////////////
-        // Instances
-        ////////////////////////
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
         // Create an Evaluator
         evaluator = seal.Evaluator(context); ////////////////////////
         // Homomorphic Functions
         ////////////////////////
-<<<<<<< HEAD
-        ExecutionTime = [1000];
-        for (n = 0; n < 1000; n++) {
-          startTime = performance.now(); // 開始時間
-          AGESUM = seal.CipherText();
-          POINTSUM = seal.CipherText();
-          SOLDSUM = seal.CipherText();
-          for (i = 1; i < CipherAGE.length; i++) {
-            if (i == 1) {
-              evaluator.add(CipherAGE[i - 1], CipherAGE[i], AGESUM);
-              evaluator.add(CipherPOINT[i - 1], CipherPOINT[i], POINTSUM);
-              evaluator.add(CipherSOLD[i - 1], CipherSOLD[i], SOLDSUM);
-            } else {
-              evaluator.add(AGESUM, CipherAGE[i], AGESUM);
-              evaluator.add(POINTSUM, CipherPOINT[i], POINTSUM);
-              evaluator.add(SOLDSUM, CipherSOLD[i], SOLDSUM);
-            }
-          }
-          endTime = performance.now(); // 終了時間
-          ExecutionTime[n] = endTime - startTime;
-        }
-        // const ResultAGE = AGESUM.save()
-        // const ResultPOINT = POINTSUM.save()
-        // const ResultSOLD = SOLDSUM.save()
-
-        // const link = document.createElement('a');
-        // const blobage = new Blob([ResultAGE],{type:"text/plain"});
-        // link.href = URL.createObjectURL(blobage);
-        // link.download = 'BFV_Result_Enc_AGE.txt';
-        // link.click();
-
-        // const blobpoint = new Blob([ResultPOINT],{type:"text/plain"});
-        // link.href = URL.createObjectURL(blobpoint);
-        // link.download = 'BFV_Result_Enc_POINT.txt';
-        // link.click();
-
-        // const blobsum = new Blob([ResultSOLD],{type:"text/plain"});
-        // link.href = URL.createObjectURL(blobsum);
-        // link.download = 'BFV_Result_Enc_SOLD.txt';
-        // link.click();
-
-        // csvのダウンロード
-        blob = new Blob([ExecutionTime], {
-          type: "text/plain"
-        }); //配列に上記の文字列(str)を設定
-        link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = "BFV_Result.txt";
-        //作ったリンクタグをクリックさせる
-        document.body.appendChild(link);
-        link.click();
-      case 28:
-=======
-        for (i = 1; i < CipherRevenues.length; i++) {
+        AGESUM = seal.CipherText();
+        POINTSUM = seal.CipherText();
+        SOLDSUM = seal.CipherText();
+        for (i = 1; i < CipherAGE.length; i++) {
           if (i == 1) {
-            evaluator.add(CipherRevenues[i - 1], CipherRevenues[i], CipherSUM);
+            evaluator.add(CipherAGE[i - 1], CipherAGE[i], AGESUM);
+            evaluator.add(CipherPOINT[i - 1], CipherPOINT[i], POINTSUM);
+            evaluator.add(CipherSOLD[i - 1], CipherSOLD[i], SOLDSUM);
           } else {
-            evaluator.add(CipherSUM, CipherRevenues[i], CipherSUM);
+            evaluator.add(AGESUM, CipherAGE[i], AGESUM);
+            evaluator.add(POINTSUM, CipherPOINT[i], POINTSUM);
+            evaluator.add(SOLDSUM, CipherSOLD[i], SOLDSUM);
           }
         }
-        Result = CipherSUM.save();
-        console.log(Result);
-        blob = new Blob([Result], {
+        ResultAGE = AGESUM.save();
+        ResultPOINT = POINTSUM.save();
+        ResultSOLD = SOLDSUM.save();
+        link = document.createElement('a');
+        blobage = new Blob([ResultAGE], {
           type: "text/plain"
         });
-        link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'BFV_Result_Enc.txt';
+        link.href = URL.createObjectURL(blobage);
+        link.download = 'BFV_Result_Enc_AGE.txt';
         link.click();
-      case 27:
->>>>>>> 103641e64b654da4e5481f5c65a983028b07d28b
+        blobpoint = new Blob([ResultPOINT], {
+          type: "text/plain"
+        });
+        link.href = URL.createObjectURL(blobpoint);
+        link.download = 'BFV_Result_Enc_POINT.txt';
+        link.click();
+        blobsum = new Blob([ResultSOLD], {
+          type: "text/plain"
+        });
+        link.href = URL.createObjectURL(blobsum);
+        link.download = 'BFV_Result_Enc_SOLD.txt';
+        link.click();
+
+        // // csvのダウンロード
+        // const blob =new Blob([ExecutionTime],{type:"text/plain"}); //配列に上記の文字列(str)を設定
+        // const link =document.createElement('a');
+        // link.href = URL.createObjectURL(blob);
+        // link.download ="BFV_Result.txt";
+        // //作ったリンクタグをクリックさせる
+        // document.body.appendChild(link);
+        // link.click();
+      case 40:
       case "end":
         return _context.stop();
     }

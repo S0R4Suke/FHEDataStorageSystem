@@ -69,7 +69,7 @@ window.CKKSKeyGenerate = async function(){
     document.getElementById("secretkey").value = Secret_key
     document.getElementById("publickey").value = Public_key
     
-    
+  
     // Download section
     const element = document.createElement('a')
     document.body.appendChild(element)
